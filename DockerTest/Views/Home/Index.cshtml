@@ -1,0 +1,15 @@
+﻿@using DockerTest.Areas.Identity.Data
+@model List<DockerTestUser>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @foreach(var user in Model){
+        <p>
+            @user.UserName
+        </p>
+    }
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

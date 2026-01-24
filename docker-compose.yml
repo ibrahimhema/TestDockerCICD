@@ -1,0 +1,26 @@
+services:
+  dockertest:
+    image: ${DOCKER_REGISTRY-}dockertest
+    build:
+      context: .
+      dockerfile: DockerTest/Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DockerTestContextConnection=Server=sqlserver;Database=DockerTest;User Id=sa;Password=P@ssw0rd12345!;TrustServerCertificate=True;MultipleActiveResultSets=true
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "P@ssw0rd12345!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:
