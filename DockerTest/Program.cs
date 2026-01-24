@@ -10,17 +10,17 @@ namespace DockerTest
         {
 
           var context=  services.BuildServiceProvider().GetRequiredService<DockerTestContext>();
-            //context.Database.Migrate();
-            //context.Users.Add(new DockerTestUser
-            //{
-            //    Email = "test@test.com",
-            //    UserName = "test",
-            //    EmailConfirmed = true,
-            //    PhoneNumberConfirmed = true,
-            //    PhoneNumber = "123456789",
-            //    NormalizedEmail = "TEST@TEST.COM"
-            //});
-            //context.SaveChanges();
+            context.Database.Migrate();
+            context.Users.Add(new DockerTestUser
+            {
+                Email = "test@test.com",
+                UserName = "test",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                PhoneNumber = "123456789",
+                NormalizedEmail = "TEST@TEST.COM"
+            });
+            context.SaveChanges();
         }
         public static void Main(string[] args)
         {
