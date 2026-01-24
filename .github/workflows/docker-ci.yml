@@ -20,7 +20,7 @@ jobs:
     - name: Build project
       run: dotnet build DockerTest.sln --configuration Release --no-restore
     - name: Publish project
-      run: dotnet publish DockerTest.csproj -c Release -o publish
+      run: dotnet publish DockerTest/DockerTest.csproj -c Release -o publish
     - name: Login to Docker Hub
       run: |
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login \
