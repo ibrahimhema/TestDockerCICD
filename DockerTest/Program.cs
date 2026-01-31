@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DockerTest.Data;
 using DockerTest.Areas.Identity.Data;
+using StackExchange.Redis;
 namespace DockerTest
 {
     public class Program
@@ -35,7 +36,9 @@ namespace DockerTest
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            // Redis
+            builder.Services.AddSingleton<IConnectionMultiplexer>(sp => ConnectionMultiplexer.Connect(builder.Configuration["Redis:Connection"]));
+            builder.Services.AddHealthChecks();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -53,11 +56,11 @@ namespace DockerTest
                         app.UseAuthentication();;
 
             app.UseAuthorization();
-            InsertUsers(builder.Services);
+            //InsertUsers(builder.Services);
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            app.MapHealthChecks("/health");
             app.Run();
         }
     }
