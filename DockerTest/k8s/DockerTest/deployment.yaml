@@ -13,8 +13,8 @@ spec:
         app: dokertest
     spec:
       containers:
-      - name: dockertest
-        image: dockertest
+      - name: dockertest123
+        image: ibrahimfarag123/dockertest
         ports:
         - containerPort: 80
         envFrom:
