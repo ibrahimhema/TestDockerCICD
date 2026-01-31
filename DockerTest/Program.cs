@@ -57,7 +57,7 @@ namespace DockerTest
                         app.UseAuthentication();;
 
             app.UseAuthorization();
-            //InsertUsers(builder.Services);
+            InsertUsers(builder.Services);
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
